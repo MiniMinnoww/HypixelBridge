@@ -1,0 +1,14 @@
+name: Miniplugin
+version: ${project.version}
+main: com.miniplugin.org.miniplugin.Miniplugin
+api-version: 1.16
+commands:
+  duel:
+    description: "Duel player"
+    usage: /duel [Player]
+  accept:
+    description: "Accept duel"
+    usage: /accept
+  leave:
+    description: "Leave duel"
+    usage: /leave
