@@ -19,6 +19,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
+import com.miniplugin.org.miniplugin.mapRebuilder.*;
 
 import java.util.Objects;
 
@@ -44,14 +45,10 @@ public final class Miniplugin extends JavaPlugin implements CommandExecutor, Lis
         Objects.requireNonNull(getCommand("duel")).setExecutor(this);
         Objects.requireNonNull(getCommand("accept")).setExecutor(this);
         Objects.requireNonNull(getCommand("leave")).setExecutor(this);
+
         Bukkit.getServer().getPluginManager().registerEvents(this, this);
         System.out.println(ChatColor.GOLD + prefix + ChatColor.GREEN + "Initialised");
 
-    }
-
-    @Override
-    public void onDisable() {
-        System.out.println(ChatColor.GOLD + prefix + ChatColor.RED + "Shutting Down");
     }
 
     @Override
@@ -73,7 +70,7 @@ public final class Miniplugin extends JavaPlugin implements CommandExecutor, Lis
             if (command.getName().equalsIgnoreCase("accept")) {
                 if (args.length == 0) {
                     if (sender.getName().equalsIgnoreCase(player2.getName())) {
-                        resetWorld();
+                        rebuildMap.rebuild();
                         inGame = true;
                         player1.sendMessage(ChatColor.GREEN + "Duel Starting...");
                         player2.sendMessage(ChatColor.GREEN + "Duel Starting...");
@@ -225,36 +222,5 @@ public final class Miniplugin extends JavaPlugin implements CommandExecutor, Lis
             player2.getInventory().setItem(8, new ItemStack(Material.ARROW, 4));
         }
     }
-
-    public void resetWorld() {
-
-
-
-
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill -15 69 0 -1 63 0 blue_terracotta");
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill 0 69 0 0 63 0 white_terracotta");
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill 15 63 0 1 69 0 red_terracotta");
-
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill -21 69 2 -19 68 2 iron_block");
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill -18 69 1 -18 68 -1 iron_block");
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill -19 69 -2 -21 68 -2 iron_block");
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill -22 69 -1 -22 68 1 iron_block");
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill -19 68 1 -21 68 -1 iron_block");
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill -21 69 -1 -19 69 1 blue_carpet");
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill -21 72 1 -19 72 -1 iron_block");
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill -20 72 0 -20 72 0 lapis_block");
-
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill 21 69 2 19 68 2 iron_block");
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill 18 69 1 18 68 -1 iron_block");
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill 19 69 -2 21 68 -2 iron_block");
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill 22 69 -1 22 68 1 iron_block");
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill 19 68 1 21 68 -1 iron_block");
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill 21 69 -1 19 69 1 red_carpet");
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill 21 72 1 19 72 -1 iron_block");
-        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:bridgetemplate run fill 20 72 0 20 72 0 redstone_block");
-
-
-    }
-
 
 }
