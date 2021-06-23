@@ -17,6 +17,8 @@ public class inventoryController {
         inGameVar inGame = inGameVar.getInstance();
         ItemStack sword = new ItemStack(Material.IRON_SWORD, 1);
         sword.addEnchantment(Enchantment.KNOCKBACK, 1);
+        ItemStack pick = new ItemStack(Material.DIAMOND_PICKAXE, 1);
+        pick.addEnchantment(Enchantment.DIG_SPEED, 3);
         if (player.getName().equalsIgnoreCase(player1.p.getName())) {
 
             PlayerInventory Inventory= player1.p.getInventory();
@@ -25,7 +27,7 @@ public class inventoryController {
 
             player1.p.getInventory().setItem(0, sword);
             player1.p.getInventory().setItem(1, new ItemStack(Material.BOW, 1));
-            player1.p.getInventory().setItem(2, new ItemStack(Material.DIAMOND_PICKAXE, 1));
+            player1.p.getInventory().setItem(2, pick);
             player1.p.getInventory().setItem(3, new ItemStack(Material.RED_TERRACOTTA, 64));
             player1.p.getInventory().setItem(4, new ItemStack(Material.GOLDEN_APPLE, 8));
             player1.p.getInventory().setItem(7, new ItemStack(Material.RED_TERRACOTTA, 64));
@@ -36,9 +38,10 @@ public class inventoryController {
             Inventory.clear();
             player2.p.getInventory().setItem(0, sword);
             player2.p.getInventory().setItem(1, new ItemStack(Material.BOW, 1));
-            player2.p.getInventory().setItem(2, new ItemStack(Material.GOLDEN_APPLE, 8));
-            player2.p.getInventory().setItem(3, new ItemStack(Material.RED_WOOL, 64));
-            player2.p.getInventory().setItem(7, new ItemStack(Material.RED_WOOL, 64));
+            player2.p.getInventory().setItem(2, pick);
+            player2.p.getInventory().setItem(3, new ItemStack(Material.BLUE_TERRACOTTA, 64));
+            player2.p.getInventory().setItem(4, new ItemStack(Material.GOLDEN_APPLE, 8));
+            player2.p.getInventory().setItem(7, new ItemStack(Material.BLUE_TERRACOTTA, 64));
             player2.p.getInventory().setItem(8, new ItemStack(Material.ARROW, 4));
         }
     }
