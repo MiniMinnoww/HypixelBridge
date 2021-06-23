@@ -2,6 +2,7 @@ package com.miniplugin.org.miniplugin;
 
 import com.miniplugin.org.miniplugin.commands.acceptCommand;
 import com.miniplugin.org.miniplugin.commands.duelCommand;
+import com.miniplugin.org.miniplugin.commands.leaveCommand;
 import com.miniplugin.org.miniplugin.inventory.inventoryController;
 import com.miniplugin.org.miniplugin.singletons.*;
 import org.bukkit.Bukkit;
@@ -44,36 +45,10 @@ public final class Miniplugin extends JavaPlugin implements CommandExecutor, Lis
         
         Objects.requireNonNull(getCommand("duel")).setExecutor(new duelCommand());
         Objects.requireNonNull(getCommand("accept")).setExecutor(new acceptCommand());
-        Objects.requireNonNull(getCommand("leave")).setExecutor(this);
+        Objects.requireNonNull(getCommand("leave")).setExecutor(new leaveCommand());
 
         Bukkit.getServer().getPluginManager().registerEvents(this, this);
         System.out.println(ChatColor.GOLD + prefix + ChatColor.GREEN + "Initialised");
-
-    }
-
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-
-
-
-        if (inGame.i) {
-            if (command.getName().equalsIgnoreCase("leave")) {
-                if (args.length == 0) {
-                    if (sender.getName().equalsIgnoreCase(player2.p.getName()) || sender.getName().equalsIgnoreCase(player1.p.getName()))
-                        inGame.i = false;
-                        player1Score.p = 0;
-                        player2Score.p = 0;
-                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:overworld run tp " + player1.p.getName() + relearnSpawnCoords);
-                        Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:overworld run tp " + player2.p.getName() + relearnSpawnCoords);
-                        player1.p = null;
-                        player2.p = null;
-                }
-
-            }
-        }
-
-
-        return true;
 
     }
 
