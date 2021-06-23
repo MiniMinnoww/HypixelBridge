@@ -8,8 +8,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import java.util.Objects;
+
 public class leaveEvents implements Listener {
-    player1Data player1 = player1Data.getInstance();
+    playerData playerData_ = playerData.getInstance();
     player2Data player2 = player2Data.getInstance();
 
     player1Points player1Score = player1Points.getInstance();
@@ -31,19 +33,19 @@ public class leaveEvents implements Listener {
 
     public void quitGame(Player playerEvent) {
         if (inGame.i) {
-            if (playerEvent.getName().equals(player1.p.getName())) {
+            if (playerEvent.getName().equals(Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player1"))).getName())) {
                 inGame.i = false;
                 player1Score.p = 0;
                 player2Score.p = 0;
                 Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:overworld run tp " + player2.p.getName() + relearnSpawnCoords);
-                player1.p = null;
+                playerData_.p.replace("player1", null);
                 player2.p = null;
             } else if (playerEvent.getName().equals(player2.p.getName())) {
                 inGame.i = false;
                 player1Score.p = 0;
                 player2Score.p = 0;
-                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:overworld run tp " + player1.p.getName() + relearnSpawnCoords);
-                player1.p = null;
+                Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "execute in minecraft:overworld run tp " + Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player1"))).getName() + relearnSpawnCoords);
+                playerData_.p.replace("player1", null);
                 player2.p = null;
             }
         }
