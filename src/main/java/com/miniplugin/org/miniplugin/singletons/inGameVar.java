@@ -1,4 +1,4 @@
-package com.miniplugin.org.miniplugin;
+package com.miniplugin.org.miniplugin.singletons;
 
 
 public class inGameVar

@@ -3,6 +3,7 @@ package com.miniplugin.org.miniplugin;
 import com.miniplugin.org.miniplugin.commands.acceptCommand;
 import com.miniplugin.org.miniplugin.commands.duelCommand;
 import com.miniplugin.org.miniplugin.inventory.inventoryController;
+import com.miniplugin.org.miniplugin.singletons.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

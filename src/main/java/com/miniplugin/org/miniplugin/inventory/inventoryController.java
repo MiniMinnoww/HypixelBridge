@@ -1,8 +1,8 @@
 package com.miniplugin.org.miniplugin.inventory;
 
-import com.miniplugin.org.miniplugin.inGameVar;
-import com.miniplugin.org.miniplugin.player1Data;
-import com.miniplugin.org.miniplugin.player2Data;
+import com.miniplugin.org.miniplugin.singletons.inGameVar;
+import com.miniplugin.org.miniplugin.singletons.player1Data;
+import com.miniplugin.org.miniplugin.singletons.player2Data;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
