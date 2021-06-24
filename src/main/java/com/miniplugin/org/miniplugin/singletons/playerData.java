@@ -14,8 +14,6 @@ public class playerData
         p = new HashMap<>();
         p.put("player1", null);
         p.put("player2", null);
-        p.put("player1Score", null);
-        p.put("player2Score", null);
     }
 
     public static playerData getInstance()

@@ -14,7 +14,6 @@ import java.util.Objects;
 
 public class moveEvent implements Listener {
     playerData playerData_ = playerData.getInstance();
-    player2Data player2 = player2Data.getInstance();
     player1Points player1Score = player1Points.getInstance();
     player2Points player2Score = player2Points.getInstance();
     inGameVar inGame = inGameVar.getInstance();
@@ -29,23 +28,25 @@ public class moveEvent implements Listener {
                     Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player1"))).setHealth(0);
                 } else if (Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player1"))).getLocation().getBlock().getRelative(BlockFace.SELF).getType() == Material.BLUE_CARPET) {
                     // Player is in the goal
+                    Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "playsound minecraft:entity.player.levelup master " + Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player1"))).getName());
                     Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player1"))).sendMessage(ChatColor.GREEN + "You scored!");
-                    player2.p.sendMessage(ChatColor.RED + Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player1"))).getName() + " scored!");
+                    Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player2"))).sendMessage(ChatColor.RED + Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player1"))).getName() + " scored!");
                     player1Score.p += 1;
                     Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player1"))).setHealth(0);
-                    player2.p.setHealth(0);
+                    Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player2"))).setHealth(0);
                 }
-            } else if (player.getName().equals(player2.p.getName())) {
-                if (player2.p.getLocation().getY() < 40) {
+            } else if (player.getName().equals(Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player2"))).getName())) {
+                if (Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player2"))).getLocation().getY() < 40) {
                     // Player died in void
-                    player2.p.setHealth(0);
-                } else if (player2.p.getLocation().getBlock().getRelative(BlockFace.SELF).getType() == Material.RED_CARPET) {
+                    Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player2"))).setHealth(0);
+                } else if (Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player2"))).getLocation().getBlock().getRelative(BlockFace.SELF).getType() == Material.RED_CARPET) {
                     // Player is in the goal
-                    player2.p.sendMessage(ChatColor.GREEN + "You scored!");
-                    Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player1"))).sendMessage(ChatColor.RED + player2.p.getName() + " scored!");
+                    Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player2"))).sendMessage(ChatColor.GREEN + "You scored!");
+                    Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "playsound minecraft:entity.player.levelup master " + Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player2"))).getName());
+                    Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player1"))).sendMessage(ChatColor.RED + Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player2"))).getName() + " scored!");
                     player2Score.p += 1;
                     Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player1"))).setHealth(0);
-                    player2.p.setHealth(0);
+                    Objects.requireNonNull(Bukkit.getPlayer(playerData_.p.get("player2"))).setHealth(0);
                 }
             }
         }
